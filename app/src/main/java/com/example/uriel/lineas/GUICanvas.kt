@@ -135,7 +135,13 @@ class GUICanvas : AppCompatActivity() {
 
                 }
                 2 -> {
-
+                    ar = Metodos().Bressenham(A,B)
+                    pasos = B[0]-A[0]
+                    for (i in 0..(pasos).toInt()){
+                        canvas.drawPoint(x+((Math.round(ar[0][i]).toFloat()*incremento)),
+                                y-((Math.round(ar[1][i]).toFloat()*incremento)), pincel1)//elimine -(incremento/2f)
+                        // en X y Y para dar soporte a (0,0)
+                    }
                 }
             }
 

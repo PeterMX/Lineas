@@ -1,5 +1,9 @@
 package com.example.uriel.lineas
 
+import com.example.uriel.lineas.R.id.x2
+
+
+
 /**
  * Created by uriel on 13/02/18.
  */
@@ -66,5 +70,30 @@ class Metodos{
         return retornar
     }
 
-    //fun Bressenham(A: FloatArray, B: FloatArray): ArrayList<FloatArray>{}
+    fun Bressenham(A: FloatArray, B: FloatArray): ArrayList<FloatArray>{
+        val m = 2f*(B[1]-A[1])
+        var inclinacion = m - (B[0]-A[0])
+
+        val x1 = arrayListOf<Float>()
+        val y1 = arrayListOf<Float>()
+
+
+        var x = A[0]
+        var y = A[1]
+        while (x <= B[0]) {
+            x1.add(x)
+            y1.add(y)
+
+            inclinacion += m
+            if (inclinacion>=0){
+                y++
+                inclinacion -= 2f*(B[0]-A[0])
+            }
+            x++
+        }
+
+
+        val retornar = arrayListOf<FloatArray>(x1.toFloatArray(),y1.toFloatArray())
+        return retornar
+    }
 }
