@@ -22,9 +22,7 @@ class MainActivity : AppCompatActivity() {
             if (x1.text.isNotEmpty()&&x2.text.isNotEmpty()&&y1.text.isNotEmpty()&&y2.text.isNotEmpty()){
                 val valores = arrayListOf<Int>((x1.text).toString().toInt(),(y1.text).toString().toInt()
                         ,(x2.text).toString().toInt(),(y2.text).toString().toInt(),spinner2.selectedItemPosition)
-                //val extra = Bundle()
-                //extra.putIntegerArrayList("valores",valores)
-                val siguiente = Intent(this,GUICanvas::class.java)//.putExtra("valores",extra)
+                val siguiente = Intent(this,GUICanvas::class.java)
                 siguiente.putExtra("valores",valores)
                 startActivity(siguiente)
             }else{

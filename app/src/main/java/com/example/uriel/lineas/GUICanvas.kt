@@ -83,7 +83,6 @@ class GUICanvas : AppCompatActivity() {
             val y = alto/2f
             val incremento = tamaño
             var incrementoAux = incremento
-            var inicio = 0
             pincel1.strokeWidth = incremento
             pincel2.strokeWidth = 2f
             pincel1.setARGB(255, 0, 0, 0)
