@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 simpleAlert.setMessage("No puede dejar espacios vacios")
 
                 simpleAlert.setButton(AlertDialog.BUTTON_POSITIVE, "OK", {
-                    dialogInterface, i ->
+                    _, _ ->
                     Toast.makeText(applicationContext, "Ingresa los valores", Toast.LENGTH_SHORT).show()
                 })
 
