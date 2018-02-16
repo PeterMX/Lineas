@@ -1,6 +1,5 @@
 package com.example.uriel.lineas
 
-import com.example.uriel.lineas.R.id.x2
 
 
 
@@ -8,19 +7,14 @@ import com.example.uriel.lineas.R.id.x2
  * Created by uriel on 13/02/18.
  */
 class Metodos{
-    fun DDA(ancho: Float, alto: Float, A: FloatArray, B: FloatArray): ArrayList<FloatArray> {
-        val x = ancho/2f
-        val y = alto/2f
+    fun DDA(A: FloatArray, B: FloatArray): ArrayList<FloatArray> {
 
         val incrementoX = B[0]-A[0]
         val incrementoY = B[1]-A[1]
-        val inicio:Int
-        val fin:Int
 
         val x1 = arrayListOf<Float>()
         val y1 = arrayListOf<Float>()
 
-        var m:Float=0f
         val pasos:Float
 
         if (Math.abs(incrementoX)>Math.abs(incrementoY)) {
@@ -48,14 +42,11 @@ class Metodos{
         val retornar = arrayListOf<FloatArray>(x1.toFloatArray(),y1.toFloatArray())
         return retornar
     }
-    fun Basico(ancho: Float, alto: Float, A: FloatArray, B: FloatArray): ArrayList<FloatArray> {
-        val x = ancho/2f
-        val y = alto/2f
+    fun Basico(A: FloatArray, B: FloatArray): ArrayList<FloatArray> {
 
         val x1 = arrayListOf<Float>()
         val y1 = arrayListOf<Float>()
 
-        val K = B[0]-A[0]
         var m:Float=0f
         var b:Float=0f
         for (i in A[0].toInt()..B[0].toInt()){
