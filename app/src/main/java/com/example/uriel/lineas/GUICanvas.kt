@@ -30,7 +30,6 @@ class GUICanvas : AppCompatActivity() {
             layaout1.removeView(fondo)
             if(zoom<20f) fondo = Lienzo(this, arreglo, ++zoom)
             else{
-                //println("que pasa1? :v")
                 val mp = MediaPlayer.create(this, R.raw.alert)
                 mp.start()
                 mp.setOnCompletionListener { mp.release() }
@@ -41,15 +40,12 @@ class GUICanvas : AppCompatActivity() {
             layaout1.addView(button3)
             layaout1.removeView(button)
             layaout1.addView(button)
-            //button.visibility = View.VISIBLE
-            //button3.visibility = View.VISIBLE
         }
         button3.setOnClickListener {
             layaout1.removeView(fondo)
             layaout1.removeView(fondo)
             if(zoom>1f) fondo = Lienzo(this, arreglo, --zoom)
             else{
-                //println("que pasa2? :v")
                 val mp = MediaPlayer.create(this, R.raw.alert)
                 mp.start()
                 mp.setOnCompletionListener { mp.release() }
@@ -59,8 +55,6 @@ class GUICanvas : AppCompatActivity() {
             layaout1.addView(button)
             layaout1.removeView(button3)
             layaout1.addView(button3)
-            //button3.visibility = View.VISIBLE
-            //button.visibility = View.VISIBLE
         }
 
     }
@@ -111,7 +105,7 @@ class GUICanvas : AppCompatActivity() {
 
             when(opc){
                 0 -> {
-                    ar = Metodos().Basico(ancho.toFloat(),alto.toFloat(),A,B)
+                    ar = Metodos().Basico(A,B)
                     pasos = B[0]-A[0]
                     for (i in 0..(pasos).toInt()){
                         canvas.drawPoint(x+((Math.round(ar[0][i]).toFloat()*incremento)),
@@ -120,7 +114,7 @@ class GUICanvas : AppCompatActivity() {
                     }
                 }
                 1 -> {
-                    ar = Metodos().DDA(ancho.toFloat(),alto.toFloat(),A,B)
+                    ar = Metodos().DDA(A,B)
                     if (Math.abs(incrementoX)>Math.abs(incrementoY)) {
                         pasos = Math.abs(incrementoX)
                     }
