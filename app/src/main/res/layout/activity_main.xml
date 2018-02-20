@@ -31,7 +31,7 @@
             android:layout_marginEnd="39dp"
             android:layout_marginTop="13dp"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="numberSigned" />
 
         <TextView
             android:id="@+id/textView7"
@@ -49,7 +49,7 @@
             android:layout_alignStart="@+id/x1"
             android:layout_below="@+id/x1"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="numberSigned" />
 
         <TextView
             android:id="@+id/textView8"
@@ -68,7 +68,7 @@
             android:layout_alignBottom="@+id/textView8"
             android:layout_alignStart="@+id/y1"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="numberSigned" />
 
         <TextView
             android:id="@+id/textView9"
@@ -87,7 +87,7 @@
             android:layout_alignBottom="@+id/textView9"
             android:layout_alignStart="@+id/x2"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="numberSigned" />
 
         <Spinner
             android:id="@+id/spinner2"
