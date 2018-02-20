@@ -62,26 +62,46 @@ class Metodos{
     }
 
     fun Bressenham(A: FloatArray, B: FloatArray): ArrayList<FloatArray>{
-        val m = 2f*(B[1]-A[1])
-        var inclinacion = m - (B[0]-A[0])
+        val m = 2f*(Math.abs(B[1]-A[1]))
+        var inclinacion = 0f//m - (B[0]-A[0])
 
         val x1 = arrayListOf<Float>()
         val y1 = arrayListOf<Float>()
-
+        val dy = Math.abs(B[1] - A[1])
+        val dx = Math.abs(B[0] - A[0])
+        val dy2 = dy.toInt() shl 1
+        val dx2 = dx.toInt() shl 1
+        val ix = if (A[0] < B[0])  1 else -1
+        val iy = if (A[1] < B[1])  1 else -1
 
         var x = A[0]
         var y = A[1]
-        while (x <= B[0]) {
-            x1.add(x)
-            y1.add(y)
-
-            inclinacion += m
-            if (inclinacion>=0){
-                y++
-                inclinacion -= 2f*(B[0]-A[0])
+        if (dy <= dx){
+            while (true) {
+                x1.add(x)
+                y1.add(y)
+                if (x==B[0]) break
+                x += ix
+                inclinacion += dy2
+                if (inclinacion>dx){
+                    y += iy
+                    inclinacion -= dx2
+                }
             }
-            x++
+        }else{
+            while (true) {
+                x1.add(x)
+                y1.add(y)
+                if (y==B[1]) break
+                y += iy
+                inclinacion += dx2
+                if (inclinacion>dy){
+                    x += ix
+                    inclinacion -= dy2
+                }
+            }
         }
+
 
 
         val retornar = arrayListOf<FloatArray>(x1.toFloatArray(),y1.toFloatArray())

@@ -127,7 +127,12 @@ class GUICanvas : AppCompatActivity() {
                 }
                 2 -> {
                     ar = Metodos().Bressenham(A,B)
-                    pasos = B[0]-A[0]
+                    if (Math.abs(incrementoX)>Math.abs(incrementoY)) {
+                        pasos = Math.abs(incrementoX)
+                    }
+                    else {
+                        pasos = Math.abs(incrementoY)
+                    }
                     for (i in 0..(pasos).toInt()){
                         canvas.drawPoint(x+((Math.round(ar[0][i]).toFloat()*incremento)),
                                 y-((Math.round(ar[1][i]).toFloat()*incremento)), pincel1)
