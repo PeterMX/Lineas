@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val opciones = arrayListOf<String>("Basico","DDA","Bressenham")
+        val opciones = arrayListOf<String>("Basico","DDA","Bresenham")
         val adapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opciones)
         spinner2.adapter = adapter
 
