@@ -17,9 +17,10 @@ class GUICanvas : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guicanvas)
         title = "Grafico"
-
         var zoom = 7f
         var arreglo = intent.getIntegerArrayListExtra("valores")
+        supportActionBar?.subtitle = if(arreglo[4]==0) "Basico" else if(arreglo[4]==1) "DDA" else "Bresenham"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         var fondo = Lienzo(this, arreglo)
         layaout1.addView(fondo)
         layaout1.removeView(button)

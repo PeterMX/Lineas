@@ -83,9 +83,8 @@
             android:id="@+id/y2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView9"
-            android:layout_alignBottom="@+id/textView9"
             android:layout_alignStart="@+id/x2"
+            android:layout_below="@+id/x2"
             android:ems="10"
             android:inputType="numberSigned" />
 
