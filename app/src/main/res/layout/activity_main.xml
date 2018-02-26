@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fondo"
     tools:context="com.example.uriel.lineas.MainActivity">
 
     <RelativeLayout
@@ -103,6 +104,8 @@
             android:layout_below="@+id/spinner2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:text="Graficar" />
+            android:text="Graficar"
+            android:textColor="@color/fondo"
+            android:background="@color/colorPrimary"/>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

@@ -49,20 +49,31 @@ class Metodos{
 
         var m:Float=0f
         var b:Float=0f
+        var contador = 0
         for (i in A[0].toInt()..B[0].toInt()){
-            if (i==A[0].toInt()){
+            /*if (i==A[0].toInt()){
                 m= ((B[1]-A[1])/(B[0]-A[0]))
                 b=A[1]-m*A[0]
             }
             x1.add(i.toFloat())
-            y1.add((m*i.toFloat())+b)
+            y1.add((m*i.toFloat())+b)*/
+            if (i==A[0].toInt()){
+                m= ((B[1]-A[1])/(B[0]-A[0]))
+                b=A[1]-m*A[0]
+                x1.add(i.toFloat())
+                y1.add((m*i.toFloat())+b)
+                contador++
+            }else{
+                x1.add(i.toFloat())
+                y1.add(y1[contador-1]+m)
+                contador++
+            }
         }
         val retornar = arrayListOf<FloatArray>(x1.toFloatArray(),y1.toFloatArray())
         return retornar
     }
 
     fun Bressenham(A: FloatArray, B: FloatArray): ArrayList<FloatArray>{
-        val m = 2f*(Math.abs(B[1]-A[1]))
         var inclinacion = 0f//m - (B[0]-A[0])
 
         val x1 = arrayListOf<Float>()

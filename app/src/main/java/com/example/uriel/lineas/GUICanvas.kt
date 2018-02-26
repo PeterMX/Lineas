@@ -2,11 +2,14 @@ package com.example.uriel.lineas
 
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 
 import kotlinx.android.synthetic.main.activity_guicanvas.*
@@ -65,10 +68,26 @@ class GUICanvas : AppCompatActivity() {
         finish()
         return true
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_tabla, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.tabla -> {
+                val siguiente = Intent(this, TablaActivity::class.java)
+                siguiente.putIntegerArrayListExtra("valores",intent.getIntegerArrayListExtra("valores"))
+                startActivity(siguiente)
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
-    class Lienzo(context: Context, arreglo: ArrayList<Int>, tamaño:Float=7f) : View(context) {
+    open class Lienzo(context: Context, arreglo: ArrayList<Int>, tamaño:Float=7f) : View(context) {
         val arreglo = arreglo
         val tamaño = tamaño
+        var ar: ArrayList<FloatArray>? = null
         override fun onDraw(canvas: Canvas) {
             val A = floatArrayOf(arreglo[0].toFloat(),arreglo[1].toFloat())
             val B = floatArrayOf(arreglo[2].toFloat(),arreglo[3].toFloat())
@@ -100,47 +119,33 @@ class GUICanvas : AppCompatActivity() {
             }
             canvas.drawLine(0f,alto/2f,ancho.toFloat(),alto/2f,pincel2)
             canvas.drawLine(ancho/2f,0f,ancho/2f,alto.toFloat(),pincel2)
-            val ar:ArrayList<FloatArray>
-            val pasos:Float
+            var pasos:Float = 0f
 
             when(opc){
                 0 -> {
                     ar = Metodos().Basico(A,B)
                     pasos = B[0]-A[0]
-                    for (i in 0..(pasos).toInt()){
-                        canvas.drawPoint(x+((Math.round(ar[0][i]).toFloat()*incremento)),
-                                y-((Math.round(ar[1][i]).toFloat()*incremento)), pincel1)
-                    }
                 }
                 1 -> {
                     ar = Metodos().DDA(A,B)
-                    if (Math.abs(incrementoX)>Math.abs(incrementoY)) {
-                        pasos = Math.abs(incrementoX)
-                    }
-                    else {
-                        pasos = Math.abs(incrementoY)
-                    }
-                    for (i in 0..(pasos).toInt()){
-                        canvas.drawPoint(x+((Math.round(ar[0][i]).toFloat()*incremento)),
-                                y-((Math.round(ar[1][i]).toFloat()*incremento)), pincel1)
+                    when {
+                        Math.abs(incrementoX)>Math.abs(incrementoY) -> pasos = Math.abs(incrementoX)
+                        else -> pasos = Math.abs(incrementoY)
                     }
 
                 }
                 2 -> {
                     ar = Metodos().Bressenham(A,B)
-                    if (Math.abs(incrementoX)>Math.abs(incrementoY)) {
-                        pasos = Math.abs(incrementoX)
-                    }
-                    else {
-                        pasos = Math.abs(incrementoY)
-                    }
-                    for (i in 0..(pasos).toInt()){
-                        canvas.drawPoint(x+((Math.round(ar[0][i]).toFloat()*incremento)),
-                                y-((Math.round(ar[1][i]).toFloat()*incremento)), pincel1)
+                    when {
+                        Math.abs(incrementoX)>Math.abs(incrementoY) -> pasos = Math.abs(incrementoX)
+                        else -> pasos = Math.abs(incrementoY)
                     }
                 }
             }
-
+            for (i in 0..pasos.toInt()){
+                canvas.drawPoint(x+((Math.round(ar!![0][i]).toFloat()*incremento)),
+                        y-((Math.round(ar!![1][i]).toFloat()*incremento)), pincel1)
+            }
         }
     }
 }
