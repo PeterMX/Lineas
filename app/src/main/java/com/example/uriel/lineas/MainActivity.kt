@@ -14,12 +14,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val opciones = arrayListOf<String>("Basico","DDA","Bresenham")
+        val opciones = arrayListOf<String>("Basico","DDA","Bresenham","Archivo")
         val adapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opciones)
         spinner2.adapter = adapter
 
         button2.setOnClickListener {
-            if (x1.text.isNotEmpty()&&x2.text.isNotEmpty()&&y1.text.isNotEmpty()&&y2.text.isNotEmpty()){
+            if(spinner2.selectedItemPosition == 3){
+                val valores = arrayListOf<Int>(0,0,0,0,3)
+                val siguiente = Intent(this,GUICanvas::class.java)
+                siguiente.putExtra("valores",valores)
+                startActivity(siguiente)
+            }
+            else if (x1.text.isNotEmpty()&&x2.text.isNotEmpty()&&y1.text.isNotEmpty()&&y2.text.isNotEmpty()){
                 val valores = arrayListOf<Int>((x1.text).toString().toInt(),(y1.text).toString().toInt()
                         ,(x2.text).toString().toInt(),(y2.text).toString().toInt(),spinner2.selectedItemPosition)
                 val siguiente = Intent(this,GUICanvas::class.java)

@@ -63,6 +63,10 @@ class GUICanvas : AppCompatActivity() {
 
     }
 
+    public override fun onDestroy() {
+        super.onDestroy()
+        Runtime.getRuntime().gc()
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         finish()
@@ -141,11 +145,16 @@ class GUICanvas : AppCompatActivity() {
                         else -> pasos = Math.abs(incrementoY)
                     }
                 }
+                3 -> {
+                    ar = Metodos().Archivo()
+                    pasos = ar!![0].size.toFloat() - 1
+                }
             }
             for (i in 0..pasos.toInt()){
                 canvas.drawPoint(x+((Math.round(ar!![0][i]).toFloat()*incremento)),
                         y-((Math.round(ar!![1][i]).toFloat()*incremento)), pincel1)
             }
+            ar?.clear()
         }
     }
 }
